@@ -24,10 +24,22 @@ ConnectWidget::ConnectWidget(QWidget *parent) :
   mainLayout->addLayout(hostAddressForm);
 
   connect(_connectButton, &QPushButton::clicked, this, &ConnectWidget::onConnectClicked);
-  connect(_comm, &ApiCommunicator::osDataReady, [=](const QJsonObject &data){emit dataFetched(data);});
-  connect(_comm, &ApiCommunicator::cpuDataReady, [=](const QJsonObject &data){emit dataFetched(data);});
-  connect(_comm, &ApiCommunicator::ramDataReady, [=](const QJsonObject &data){emit dataFetched(data);});
-  connect(_comm, &ApiCommunicator::hddDataReady, [=](const QJsonObject &data){emit dataFetched(data);});
+  connect(_comm, &ApiCommunicator::osDataReady, [=](const QJsonObject &data) {
+    emit osDataReady(data);
+    emit dataReady();
+  });
+  connect(_comm, &ApiCommunicator::cpuDataReady, [=](const QJsonObject &data) {
+    emit cpuDataReady(data);
+    emit dataReady();
+  });
+  connect(_comm, &ApiCommunicator::ramDataReady, [=](const QJsonObject &data) {
+    emit ramDataReady(data);
+    emit dataReady();
+ });
+  connect(_comm, &ApiCommunicator::hddDataReady, [=](const QJsonObject &data) {
+    emit hddDataReady(data);
+    emit dataReady();
+  });
 }
 
 void ConnectWidget::onConnectClicked() {

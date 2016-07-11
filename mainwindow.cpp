@@ -13,14 +13,17 @@ MainWindow::MainWindow(QWidget *parent) :
   ui->setupUi(this);
   setMinimumSize(809, 500);
   QStackedWidget *stackWidget = new QStackedWidget(this);
-  ConnectWidget *connectWidget = new ConnectWidget(stackWidget);
-  SummaryWidget *summaryWidget = new SummaryWidget(stackWidget);
+  ConnectWidget *connectWidget = new ConnectWidget;
+  SummaryWidget *summaryWidget = new SummaryWidget;
   stackWidget->addWidget(connectWidget);
   stackWidget->addWidget(summaryWidget);
   setCentralWidget(stackWidget);
 
-  connect(connectWidget, &ConnectWidget::dataFetched, summaryWidget, &SummaryWidget::displaySummary);
-  connect(connectWidget, &ConnectWidget::dataFetched, [=](){stackWidget->setCurrentIndex(1);});
+  connect(connectWidget, &ConnectWidget::osDataReady, summaryWidget, &SummaryWidget::updateOsData);
+  connect(connectWidget, &ConnectWidget::cpuDataReady, summaryWidget, &SummaryWidget::updateCpuData);
+  connect(connectWidget, &ConnectWidget::ramDataReady, summaryWidget, &SummaryWidget::updateRamData);
+  connect(connectWidget, &ConnectWidget::hddDataReady, summaryWidget, &SummaryWidget::updateHddData);
+  connect(connectWidget, &ConnectWidget::dataReady, [=](){stackWidget->setCurrentIndex(1);});
 }
 
 MainWindow::~MainWindow()

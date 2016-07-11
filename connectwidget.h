@@ -19,7 +19,11 @@ public slots:
   void onConnectClicked();
 
 signals:
-  void dataFetched(const QJsonObject &data);
+  void osDataReady(const QJsonObject &data);
+  void cpuDataReady(const QJsonObject &data);
+  void ramDataReady(const QJsonObject &data);
+  void hddDataReady(const QJsonObject &data);
+  void dataReady();
 
 private:
   ApiCommunicator *_comm;

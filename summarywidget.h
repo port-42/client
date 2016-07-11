@@ -3,7 +3,7 @@
 
 #include <QWidget>
 
-class QTextEdit;
+class QLineEdit;
 
 class SummaryWidget : public QWidget
 {
@@ -14,10 +14,28 @@ public:
 signals:
 
 public slots:
-  void displaySummary(const QJsonObject &data);
+  void updateOsData(const QJsonObject &data);
+  void updateCpuData(const QJsonObject &data);
+  void updateRamData(const QJsonObject &data);
+  void updateHddData(const QJsonObject &data);
+
 
 private:
-  QTextEdit *_text;
+  QLineEdit *_osName;
+  QLineEdit *_osArch;
+  QLineEdit *_osVersion;
+
+  QLineEdit *_cpuCount;
+  QLineEdit *_cpuArch;
+  QLineEdit *_cpuModel;
+  QLineEdit *_cpuUsage;
+
+  QLineEdit *_ramTotal;
+  QLineEdit *_ramUsage;
+
+  QLineEdit *_hddCount;
+  QLineEdit *_hddTotal;
+  QLineEdit *_hddUsage;
 };
 
 #endif // SUMMARYWIDGET_H
