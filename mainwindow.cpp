@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
+  setMinimumSize(809, 500);
   QStackedWidget *stackWidget = new QStackedWidget(this);
   ConnectWidget *connectWidget = new ConnectWidget(stackWidget);
   SummaryWidget *summaryWidget = new SummaryWidget(stackWidget);
