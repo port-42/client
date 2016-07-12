@@ -1,5 +1,4 @@
 #include "apicommunicator.h"
-#include <QNetworkRequest>
 #include <QNetworkReply>
 #include <QJsonDocument>
 #include <QDebug>
@@ -40,8 +39,9 @@ void ApiCommunicator::fetchHddData(const QUrl &serverUrl) const
 
 void ApiCommunicator::_sendRequest(const QUrl &url, void (ApiCommunicator::*signal)(const QJsonObject &) const) const
 {
+  qDebug() << "GET" << url.toString();
   QNetworkReply *reply = _nam->get(QNetworkRequest(url));
-  connect(reply, &QNetworkReply::finished, [=]() {
+  connect(reply, &QNetworkReply::readChannelFinished, [=]() {
     if (reply->error()) {
       qDebug() << "Request error:" << reply->errorString();
       return;
@@ -50,8 +50,7 @@ void ApiCommunicator::_sendRequest(const QUrl &url, void (ApiCommunicator::*sign
     reply->deleteLater();
     if (data.size() <= 1)
       return;
-    qDebug() << "URL:" << url.toString();
-    qDebug() << "Response:" << data;
+    qDebug() << "GET" << url.toString() << ">>" << data;
 
     QJsonParseError parseError;
     const QJsonObject json = QJsonDocument::fromJson(data, &parseError).object();

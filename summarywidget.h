@@ -22,12 +22,12 @@ public slots:
 
 private:
   QLineEdit *_osName;
-  QLineEdit *_osArch;
   QLineEdit *_osVersion;
+  QLineEdit *_osArch;
 
   QLineEdit *_cpuCount;
-  QLineEdit *_cpuArch;
   QLineEdit *_cpuModel;
+  QLineEdit *_cpuArch;
   QLineEdit *_cpuUsage;
 
   QLineEdit *_ramTotal;

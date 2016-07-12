@@ -16,6 +16,7 @@ ConnectWidget::ConnectWidget(QWidget *parent) :
   _connectButton(new QPushButton("Connect"))
 {
   _hostServerInput->setText("http://127.0.0.1:8080");
+  _hostServerInput->setMinimumWidth(600);
   QVBoxLayout *mainLayout = new QVBoxLayout(this);
   mainLayout->addWidget(new QLabel("ETNA_Config"));
   QFormLayout *hostAddressForm = new QFormLayout();

@@ -10,11 +10,11 @@
 SummaryWidget::SummaryWidget(QWidget *parent) :
   QWidget(parent),
   _osName(new QLineEdit),
-  _osArch(new QLineEdit),
   _osVersion(new QLineEdit),
+  _osArch(new QLineEdit),
   _cpuCount(new QLineEdit),
-  _cpuArch(new QLineEdit),
   _cpuModel(new QLineEdit),
+  _cpuArch(new QLineEdit),
   _cpuUsage(new QLineEdit),
   _ramTotal(new QLineEdit),
   _ramUsage(new QLineEdit),
@@ -23,31 +23,44 @@ SummaryWidget::SummaryWidget(QWidget *parent) :
   _hddUsage(new QLineEdit)
 {
   _osName->setReadOnly(true);
-  _osArch->setReadOnly(true);
   _osVersion->setReadOnly(true);
+  _osArch->setReadOnly(true);
   _cpuCount->setReadOnly(true);
-  _cpuArch->setReadOnly(true);
   _cpuModel->setReadOnly(true);
+  _cpuArch->setReadOnly(true);
+  _cpuUsage->setReadOnly(true);
   _ramTotal->setReadOnly(true);
   _ramUsage->setReadOnly(true);
   _hddCount->setReadOnly(true);
   _hddTotal->setReadOnly(true);
   _hddUsage->setReadOnly(true);
+  _osName->setMinimumWidth(300);
+  _osArch->setMinimumWidth(300);
+  _osVersion->setMinimumWidth(300);
+  _cpuCount->setMinimumWidth(300);
+  _cpuArch->setMinimumWidth(300);
+  _cpuModel->setMinimumWidth(300);
+  _cpuUsage->setMinimumWidth(300);
+  _ramTotal->setMinimumWidth(300);
+  _ramUsage->setMinimumWidth(300);
+  _hddCount->setMinimumWidth(300);
+  _hddTotal->setMinimumWidth(300);
+  _hddUsage->setMinimumWidth(300);
 
   auto mainLayout = new QGridLayout(this);
 
   auto osGroup = new QGroupBox("OS");
   auto osLayout = new QFormLayout(osGroup);
   osLayout->addRow("Name", _osName);
-  osLayout->addRow("Architecture", _osArch);
   osLayout->addRow("Version", _osVersion);
+  osLayout->addRow("Architecture", _osArch);
   mainLayout->addWidget(osGroup, 0, 0);
 
   auto cpuGroup = new QGroupBox("CPU");
   auto cpuLayout = new QFormLayout(cpuGroup);
   cpuLayout->addRow("Count", _cpuCount);
-  cpuLayout->addRow("Architecture", _cpuArch);
   cpuLayout->addRow("Model", _cpuModel);
+  cpuLayout->addRow("Architecture", _cpuArch);
   cpuLayout->addRow("Usage", _cpuUsage);
   mainLayout->addWidget(cpuGroup, 0, 1);
 
