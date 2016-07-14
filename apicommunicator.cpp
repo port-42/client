@@ -56,7 +56,9 @@ void ApiCommunicator::_sendRequest(const QUrl &url, void (ApiCommunicator::*sign
     const QJsonObject json = QJsonDocument::fromJson(data, &parseError).object();
     if (parseError.error)
       qDebug() << "JSON parse error:" << parseError.errorString();
-    else
+    else {
       emit (this->*signal)(json);
+      emit dataFetched(json);
+    }
   });
 }

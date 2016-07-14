@@ -22,6 +22,7 @@ signals:
   void cpuDataReady(const QJsonObject &data) const;
   void ramDataReady(const QJsonObject &data) const;
   void hddDataReady(const QJsonObject &data) const;
+  void dataFetched(const QJsonObject &data) const;
 
 private:
   void _sendRequest(const QUrl &url, void (ApiCommunicator::* signal)(const QJsonObject &) const) const;

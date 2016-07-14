@@ -3,6 +3,7 @@
 #include <QFormLayout>
 #include <QGroupBox>
 #include <QLabel>
+#include <QPushButton>
 #include <QLineEdit>
 #include <QJsonDocument>
 #include <QJsonObject>
@@ -47,14 +48,16 @@ SummaryWidget::SummaryWidget(QWidget *parent) :
   _hddTotal->setMinimumWidth(300);
   _hddUsage->setMinimumWidth(300);
 
-  auto mainLayout = new QGridLayout(this);
+  auto mainLayout = new QVBoxLayout(this);
+  auto summaryLayout = new QGridLayout;
+  mainLayout->addLayout(summaryLayout);
 
   auto osGroup = new QGroupBox("OS");
   auto osLayout = new QFormLayout(osGroup);
   osLayout->addRow("Name", _osName);
   osLayout->addRow("Version", _osVersion);
   osLayout->addRow("Architecture", _osArch);
-  mainLayout->addWidget(osGroup, 0, 0);
+  summaryLayout->addWidget(osGroup, 0, 0);
 
   auto cpuGroup = new QGroupBox("CPU");
   auto cpuLayout = new QFormLayout(cpuGroup);
@@ -62,20 +65,25 @@ SummaryWidget::SummaryWidget(QWidget *parent) :
   cpuLayout->addRow("Model", _cpuModel);
   cpuLayout->addRow("Architecture", _cpuArch);
   cpuLayout->addRow("Usage", _cpuUsage);
-  mainLayout->addWidget(cpuGroup, 0, 1);
+  summaryLayout->addWidget(cpuGroup, 0, 1);
 
   auto ramGroup = new QGroupBox("RAM");
   auto ramLayout = new QFormLayout(ramGroup);
   ramLayout->addRow("Total", _ramTotal);
   ramLayout->addRow("Usage", _ramUsage);
-  mainLayout->addWidget(ramGroup, 1, 0);
+  summaryLayout->addWidget(ramGroup, 1, 0);
 
   auto hddGroup = new QGroupBox("RAM");
   auto hddLayout = new QFormLayout(hddGroup);
   hddLayout->addRow("Count", _hddCount);
   hddLayout->addRow("Total", _hddTotal);
   hddLayout->addRow("Usage", _hddUsage);
-  mainLayout->addWidget(hddGroup, 1, 1);
+  summaryLayout->addWidget(hddGroup, 1, 1);
+
+  auto refreshButton = new QPushButton("Refresh");
+  mainLayout->addWidget(refreshButton);
+
+  connect(refreshButton, &QPushButton::clicked, this, &SummaryWidget::refreshClicked);
 }
 
 void SummaryWidget::updateOsData(const QJsonObject &data) {
@@ -90,7 +98,6 @@ void SummaryWidget::updateCpuData(const QJsonObject &data) {
   _cpuModel->setText(data["model"].toString());
   _cpuUsage->setText(data["usage"].toString());
 }
-
 
 void SummaryWidget::updateRamData(const QJsonObject &data) {
   _ramTotal->setText(data["total"].toString());

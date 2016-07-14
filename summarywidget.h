@@ -12,13 +12,13 @@ public:
   explicit SummaryWidget(QWidget *parent = 0);
 
 signals:
+  void refreshClicked();
 
 public slots:
   void updateOsData(const QJsonObject &data);
   void updateCpuData(const QJsonObject &data);
   void updateRamData(const QJsonObject &data);
   void updateHddData(const QJsonObject &data);
-
 
 private:
   QLineEdit *_osName;
