@@ -42,7 +42,7 @@ target_link_libraries(client Qt5::Core Qt5::Gui Qt5::Widgets Qt5::Network)
 # GENERATION OF THE INSTALLERS FOR DEBIAN
 INSTALL(TARGETS client DESTINATION port)
 
+include (InstallRequiredSystemLibraries)
 SET(CPACK_GENERATOR "DEB")
 SET(CPACK_DEBIAN_PACKAGE_MAINTAINER "Samir AHAMADA") #required
-
 INCLUDE(CPack)
