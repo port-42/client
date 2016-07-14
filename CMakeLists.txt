@@ -30,8 +30,6 @@ set(CLIENT_SRC
   ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/mainwindow.h
-  ${CMAKE_CURRENT_SOURCE_DIR}/requests.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/requests.h
   ${CMAKE_CURRENT_SOURCE_DIR}/summarywidget.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/summarywidget.h
 )

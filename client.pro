@@ -15,13 +15,11 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     connectwidget.cpp \
-    requests.cpp \
     apicommunicator.cpp \
     summarywidget.cpp
 
 HEADERS  += mainwindow.h \
     connectwidget.h \
-    requests.h \
     apicommunicator.h \
     summarywidget.h
 

@@ -6,7 +6,6 @@
 #include <QJsonObject>
 #include <QStackedWidget>
 #include "connectwidget.h"
-#include "requests.h"
 #include "apicommunicator.h"
 
 ConnectWidget::ConnectWidget(QWidget *parent) :
