@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0.0 FATAL_ERROR)
 
 project(Client)
 
+# Instruct CMake to look for brewed qt5 files on OSX
 if (${APPLE})
   set(CMAKE_PREFIX_PATH /usr/local/opt/qt5)
 endif(${APPLE})
